@@ -25,20 +25,25 @@ Full Nvim setup
 ---
 
 ##  Navigation
-| Key       | Action   |
-|-----------|----------|
-| Shift + L | Next tab |
+| Key       | Action       |
+|-----------|--------------|
+| Alt + l   | Next tab     |
+| Alt + h   | Previous tab |
 
 ---
 
 ## Terminal
-| Key                    | Action           |
-|------------------------|------------------|
-| Ctrl + \               | Toggle terminal  |
-| Ctrl + Shift + V       | Paste            |
-| Ctrl + Shift + C       | Copy             |
-| " :split | terminal "  | Horizontal split |
-| " :vsplit | terminal " | Vertical split   |
+| Key                    | Action                  |
+|------------------------|-------------------------|
+| Ctrl + \               | Toggle terminal         |
+| Ctrl + t               | Toggle terminal         |
+| \ + 1                  | Switch Toggle terminal  |
+| \ + 2                  | Switch Toggle terminal  |
+| \ + 3                  | Switch Toggle terminal  |
+| Ctrl + Shift + V       | Paste                   |
+| Ctrl + Shift + C       | Copy                    |
+| " :split | terminal "  | Horizontal split        |
+| " :vsplit | terminal " | Vertical split          |
 
 ---
 
