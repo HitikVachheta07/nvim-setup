@@ -9,18 +9,26 @@ Full Nvim setup
 | `Enter`         | Open file              |
 |  a              | New file               |
 |  d              | Delete                 |
-|  r              | Rename                 |
-|  H              | Toggle hidden files    |
+|  r or e         | Rename                 |
+|  shift + h      | Toggle hidden files    |
 | :NvimTreeToggle | Toggle file tree       |
 |  Ctrl + b       | Toggle file tree       |
+|  f              | find file              |
+|  Ctrl + b       | Toggle file tree       |
+|  Ctrl + s       | Save file              |
+|  \ + w          | Close file              |
 
 ---
 
 ##  Window Management
-| Key     | Action           |
-|---------|------------------|
-| :split  | Horizontal split |
-| :vsplit | Vertical split   |
+| Key              | Action           |
+|------------------|------------------|
+| :split  or \ + s | Horizontal split |
+| :vsplit or \ + v | Vertical split   |
+
+## Move Between splits
+| ctrl + h  | previous split |
+| ctrl + l  | next split     |
 
 ---
 

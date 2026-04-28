@@ -14,25 +14,50 @@ require("lazy").setup({
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
+      "nvim-tree/nvim-web-devicons",
+},
     config = function()
       require("nvim-tree").setup({
-  renderer = {
-    icons = {
-      show = {
-        file = true,
-        folder = true,
-        folder_arrow = true,
-        git = true,
+
+      view = {
+        width = 30,
+        side = "left",
       },
-    },
-  },
-  git = {
-    enable = true,
-  },
-})    end
-  },
+
+      renderer = {
+        highlight_git = true,
+        icons = {
+          show = {
+            file = true,
+            folder = true,
+            folder_arrow = true,
+            git = true,
+          },
+        },
+      },
+
+      filters = {
+        dotfiles = false,
+      },
+
+      git = {
+        enable = true,
+      },
+
+      update_focused_file = {
+        enable = true,
+        update_cwd = true,
+      },
+
+      actions = {
+        open_file = {
+          resize_window = true,
+        },
+      },
+
+    })
+  end,
+},
 
   -- 🔍 Telescope (search like VS Code)
   {
@@ -51,7 +76,7 @@ require("lazy").setup({
         shade_terminals = true,
         persist_size = true,
       })
-    end
+    end,
   },
 
   -- 🔽 Folding
@@ -63,7 +88,7 @@ require("lazy").setup({
       vim.o.foldlevel = 99
       vim.o.foldenable = true
       require("ufo").setup()
-    end
+    end,
   },
 
   -- 📊 Status line (bottom bar like VS Code)
@@ -72,7 +97,7 @@ require("lazy").setup({
     dependencies = {"nvim-tree/nvim-web-devicons"},
     config = function()
       require("lualine").setup()
-    end
+    end,
   },
 
   -- 📑 Tabs / open files bar
@@ -82,7 +107,7 @@ require("lazy").setup({
     version = "*",
     config = function()
       require("bufferline").setup()
-    end
+    end,
   },
 
   -- 🧠 Better editing (surround, repeat, etc.)
@@ -126,11 +151,15 @@ vim.keymap.set("n", "<C-p>", ":Telescope find_files<CR>")
 vim.keymap.set("n", "<C-f>", ":Telescope live_grep<CR>")
 
 -- 🔁 Replace word
-vim.keymap.set("n", "<C-h>", ":%s///g<Left><Left>")
+vim.keymap.set("n", "<leader>r", ":%s///g<Left><Left>")
 
 -- 📑 Buffers (tabs)
-vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>")
-vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>")
+vim.keymap.set("n", "<A-l>", ":BufferLineCycleNext<CR>")
+vim.keymap.set("n", "<A-h>", ":BufferLineCyclePrev<CR>")
+
+-- Insert mode also works
+vim.keymap.set("i", "<A-l>", "<Esc>:BufferLineCycleNext<CR>")
+vim.keymap.set("i", "<A-h>", "<Esc>:BufferLineCyclePrev<CR>")
 
 -- ❌ Close file
 vim.keymap.set("n", "<leader>w", ":bd<CR>")
@@ -141,3 +170,35 @@ vim.keymap.set("n", "<C-n>",  ":enew<CR>")
 -- ⚖️ Diff (compare files)
 vim.keymap.set("n", "<leader>df", ":diffthis<CR>")
 vim.keymap.set("n", "<leader>do", ":diffoff<CR>")
+
+-- TERMINAL KEYMAPS (BETTER CONTROL)
+
+-- Toggle last terminal
+vim.keymap.set("n", "<C-t>", ":ToggleTerm<CR>")
+
+-- Open specific terminals (FAST switching)
+vim.keymap.set("n", "<leader>1", ":ToggleTerm 1<CR>")
+vim.keymap.set("n", "<leader>2", ":ToggleTerm 2<CR>")
+vim.keymap.set("n", "<leader>3", ":ToggleTerm 3<CR>")
+vim.keymap.set("n", "<leader>4", ":ToggleTerm 4<CR>")
+vim.keymap.set("n", "<leader>5", ":ToggleTerm 5<CR>")
+vim.keymap.set("n", "<leader>6", ":ToggleTerm 6<CR>")
+
+-- Hide ALL terminals (IMPORTANT FIX)
+vim.keymap.set("n", "<leader>th", function()
+  for i = 1, 6 do
+    pcall(vim.cmd, "ToggleTerm " .. i)
+  end
+end)
+
+-- SAVE
+vim.keymap.set("n", "<C-s>", ":w<CR>")
+vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>")
+
+-- SPLITS (safe keys)
+vim.keymap.set("n", "<leader>v", ":vsplit<CR>")
+vim.keymap.set("n", "<leader>s", ":split<CR>")
+
+-- MOVE BETWEEN SPLITS
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
